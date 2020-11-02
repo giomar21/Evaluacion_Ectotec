@@ -28,7 +28,7 @@
         <button type="button" class="btn btn-danger btn-sm">Eliminar</button>      
       </td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm">Editar</button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="Editar(contacto, contactoModal)">Editar</button>
       </td>
     </tr>
   </tbody>
@@ -37,7 +37,7 @@
 
 <ng-template #contactoModal let-modal>
   <div class="modal-header">
-    <h4 class='modal-title'>Crear un contacto</h4>
+    <h4 class='modal-title'>{{contacto.operacion}} un contacto</h4>
     <button class='close' arial-label='close' type='button' (click)='modal.dismiss()'> 
       <span aria-hidden='true'>&times;</span>
     </button>
@@ -72,6 +72,6 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-danger">Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)='AgregarContacto()'>Agregar</button>
+    <button type="button" class="btn btn-primary" (click)='ProcesarContacto()'>{{contacto.operacion}} </button>
   </div>
 </ng-template>

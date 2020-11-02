@@ -35,7 +35,8 @@ export class ListaContactosComponent implements OnInit {
       email: '',
       telefono:'',
       fechaCreacion:'',
-      activo:false
+      activo:false,
+      operacion:'Crear'
     };
   }
 
@@ -54,19 +55,42 @@ export class ListaContactosComponent implements OnInit {
       });
   }
 
-  AgregarContacto(){
-    this.contactService.post(this.contacto)
-    .pipe(first())
-    .subscribe(
-      data => {
-        this.resetContact();
-        console.log('Data > ', data);
-        this.getContacts(this.pageSize, this.pageIndex + 1);
-      },
-      error => {
-        console.error("Error > ", error);
-      }
-    );  
+  ProcesarContacto(){
+    console.log("this.contacto.operacion > ", this.contacto.operacion);
+
+    if (this.contacto.operacion == 'Crear')
+    {
+      this.contactService.post(this.contacto)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.resetContact();
+          this.getContacts(this.pageSize, this.pageIndex + 1);
+        },
+        error => {
+          console.error("Error > ", error);
+        }
+      );    
+    }
+    else
+    {
+      this.contactService.put(this.contacto)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.getContacts(this.pageSize, this.pageIndex + 1);
+        },
+        error => {
+          console.error("Error > ", error);
+        }
+      );    
+    }  
+  }
+
+  Editar(contacto:Contacto, contactoModal){
+    this.contacto = contacto;
+    this.contacto.operacion = 'Editar';
+    this.modal.open(contactoModal);
   }
 
 }

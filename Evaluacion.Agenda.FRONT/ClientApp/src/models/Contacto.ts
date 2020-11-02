@@ -8,5 +8,6 @@ interface Contacto {
     email: string;
     fechaCreacion: string;
     activo: boolean;
+    operacion: string;
   }
   
