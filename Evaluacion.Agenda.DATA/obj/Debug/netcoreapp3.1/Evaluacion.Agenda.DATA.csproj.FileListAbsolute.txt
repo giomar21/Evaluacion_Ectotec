@@ -1,0 +1,23 @@
+C:\Users\HP\Documents\Visual Studio 2019\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.deps.json
+C:\Users\HP\Documents\Visual Studio 2019\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.dll
+C:\Users\HP\Documents\Visual Studio 2019\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.csprojAssemblyReference.cache
+C:\Users\HP\Documents\Visual Studio 2019\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.AssemblyInfoInputs.cache
+C:\Users\HP\Documents\Visual Studio 2019\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.AssemblyInfo.cs
+C:\Users\HP\Documents\Visual Studio 2019\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.runtimeconfig.json
+C:\Users\HP\Documents\Visual Studio 2019\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.runtimeconfig.dev.json
+C:\Users\HP\Documents\Visual Studio 2019\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.genruntimeconfig.cache
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.deps.json
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.runtimeconfig.json
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.runtimeconfig.dev.json
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.dll
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.pdb
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.dll
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.pdb
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.csprojAssemblyReference.cache
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.AssemblyInfoInputs.cache
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.AssemblyInfo.cs
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.csproj.CoreCompileInputs.cache
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.csproj.CopyComplete
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.dll
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.pdb
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.DATA\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.DATA.genruntimeconfig.cache

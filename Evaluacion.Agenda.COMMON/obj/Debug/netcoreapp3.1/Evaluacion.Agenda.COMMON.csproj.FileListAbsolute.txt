@@ -1,0 +1,9 @@
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.deps.json
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.dll
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\bin\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.pdb
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.csprojAssemblyReference.cache
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.AssemblyInfoInputs.cache
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.AssemblyInfo.cs
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.csproj.CoreCompileInputs.cache
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.dll
+D:\EctoTec_GIT\Evaluaciones\Evaluacion.Agenda.API\Evaluacion.Agenda.COMMON\obj\Debug\netcoreapp3.1\Evaluacion.Agenda.COMMON.pdb
