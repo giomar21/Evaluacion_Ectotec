@@ -1,6 +1,6 @@
 <h1 id="tableLabel2">Lista de contactos</h1>
 <br>
-<button type="button" class="btn btn-primary">Agregar un contacto +</button>
+<button type="button" class="btn btn-primary" (click)='modal.open(contactoModal)'>Agregar un contacto +</button>
 <br>
 <br>
 
@@ -34,3 +34,44 @@
   </tbody>
 </table>
 </div>
+
+<ng-template #contactoModal let-modal>
+  <div class="modal-header">
+    <h4 class='modal-title'>Crear un contacto</h4>
+    <button class='close' arial-label='close' type='button' (click)='modal.dismiss()'> 
+      <span aria-hidden='true'>&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label><b>Nombre</b></label>
+        <input type="text" class="form-control" id="nombre" [(ngModel)]="contacto.nombre"  [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <label><b>Apellido paterno</b></label>
+        <input type="text" class="form-control" id="apellidoPaterno" [(ngModel)]="contacto.apellidoPaterno"  [ngModelOptions]="{standalone: true}">
+      </div>     
+      <div class="form-group">
+        <label><b>Apellido materno</b></label>
+        <input type="text" class="form-control" id="apellidoMaterno" [(ngModel)]="contacto.apellidoMaterno"  [ngModelOptions]="{standalone: true}">
+      </div>   
+      <div class="form-group">
+        <label><b>Dirección</b></label>
+        <input type="text" class="form-control" id="direccion" [(ngModel)]="contacto.direccion"  [ngModelOptions]="{standalone: true}">
+      </div>   
+      <div class="form-group">
+        <label><b>Teléfono</b></label>
+        <input type="text" class="form-control" id="telefono" [(ngModel)]="contacto.telefono"  [ngModelOptions]="{standalone: true}">
+      </div>  
+      <div class="form-group">
+        <label><b>Correo electrónico</b></label>
+        <input type="email" class="form-control" id="email" [(ngModel)]="contacto.email"  [ngModelOptions]="{standalone: true}">
+      </div>  
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger">Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)='AgregarContacto()'>Agregar</button>
+  </div>
+</ng-template>

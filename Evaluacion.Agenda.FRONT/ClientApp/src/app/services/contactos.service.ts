@@ -17,4 +17,17 @@ export class ContactosService {
     return this.http.get<ResponseContactoModel>(`${environment.apiUrl}/Contacto`, { params });
   }
 
+  post(contacto:Contacto) {
+    console.log('contacto > ', contacto);
+    return this.http.post<OperationResult>(`${environment.apiUrl}/Contacto`, contacto );
+  }
+
+  put(contacto:Contacto) {
+    return this.http.put<OperationResult>(`${environment.apiUrl}/Contacto`, contacto);
+  }
+
+  delete(contacto:Contacto) {
+    return this.http.delete<OperationResult>(`${environment.apiUrl}/Contacto?id=${contacto.id}`);
+  }
+
 }

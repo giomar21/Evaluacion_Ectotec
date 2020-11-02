@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { ListaContactosComponent } from './lista-contactos/lista-contactos.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ListaContactosComponent } from './lista-contactos/lista-contactos.compo
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    NgbModalModule,
     RouterModule.forRoot([
       { path: '', component: ListaContactosComponent, pathMatch: 'full' },
       { path: 'lista-contactos', component: ListaContactosComponent },
