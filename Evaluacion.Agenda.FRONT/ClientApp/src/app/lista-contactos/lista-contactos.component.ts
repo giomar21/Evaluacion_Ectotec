@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ContactosService } from '../services/contactos.service';
 import { first } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmDialogService } from './../services/confirm-dialog.service';
 
 @Component({
   selector: 'app-lista-contactos',
@@ -19,7 +20,7 @@ export class ListaContactosComponent implements OnInit {
   public result: OperationResult;
 
   contacto:Contacto;
-  constructor(http: HttpClient, private contactService:ContactosService, private modal:NgbModal) {
+  constructor(http: HttpClient, private contactService:ContactosService, private modal:NgbModal, private confirmDialogService: ConfirmDialogService) {
     this.resetContact();
     this.resetResult();
   }
@@ -121,5 +122,31 @@ export class ListaContactosComponent implements OnInit {
     this.resetResult();
     this.resetContact();
   }
+
+  Delete(contacto:Contacto) {
+    this.contactService.delete(contacto)
+    .pipe(first())
+    .subscribe(
+      data => {
+        this.result = data;
+        if (data.success)
+        {
+          this.resetResult();
+          this.getContacts(this.pageSize, this.pageIndex + 1);
+        }     
+      },
+      error => {
+        console.error("Error > ", error);
+      }
+    );  
+  }
+
+  Eliminar(contacto:Contacto) {  
+    this.confirmDialogService.confirmThis("¿Está seguro que desea eliminar el contacto seleccionado?",  () => {    
+        console.log("Delete > ", contacto);
+        this.Delete(contacto);
+    }, () => {  
+    })  
+  }  
 
 }

@@ -8,8 +8,16 @@ using System.Text;
 
 namespace Evaluacion.Agenda.DATA.Services
 {
+    /// <summary>
+    /// Servicio de administración de un <see cref="Contacto"/>
+    /// </summary>
     public static class ContactoService
     {
+        /// <summary>
+        /// Crea un contacto > <see cref="Contacto"/>
+        /// </summary>
+        /// <param name="contacto"></param>
+        /// <returns></returns>
         public static OperationResult Create(ContactoModel contacto)
         {
             try
@@ -65,128 +73,12 @@ namespace Evaluacion.Agenda.DATA.Services
                 return new OperationResult() { Message = ex.Message }; // Normalmente se manda un error genérico, pero se deja así por fines de que es una evaluación
             }
         }
-        public static ResponseContactoModel Get(int numRegistros, int numPagina, string filter)
-        {
-            var rContactos_ = new ResponseContactoModel();
 
-            try
-            {
-                using (AgendaContext dbContext = new AgendaContext())
-                {
-                    if (string.IsNullOrEmpty(filter)) filter = "";
-
-                    var rContactos = dbContext.Contacto.Where(x => (bool)x.Activo &&
-                    (((x.Nombre ?? "") + " " + (x.ApellidoPaterno ?? "") + " " + (x.ApellidoMaterno ?? "")).Contains(filter) ||
-                    x.Email.Contains(filter) ||
-                    x.Telefono.Contains(filter) ||
-                    x.Direccion.Contains(filter)))
-                        .OrderByDescending(x => x.FechaCreacion).ToList();
-
-                    rContactos_.TotalGlobal = rContactos.Count();
-
-                    rContactos = rContactos.Skip((numPagina - 1) * numRegistros)
-                   .Take(numRegistros).ToList();
-
-                    rContactos.ForEach(x => rContactos_.ListContactos.Add(new ContactoModel()
-                    {
-                        ApellidoMaterno = x.ApellidoMaterno,
-                        ApellidoPaterno = x.ApellidoPaterno,
-                        Direccion = x.Direccion,
-                        Email = x.Email,
-                        Nombre = x.Nombre,
-                        Telefono = x.Telefono,
-                        Id = x.Id
-                    }));
-
-                    return rContactos_;
-                }
-            }
-            catch
-            {
-                return rContactos_; // Normalmente se manda un error genérico, pero se deja así por fines de que es una evaluación
-            }
-        }
-        public static OperationResult Delete(Guid id)
-        {
-            try
-            {
-                using (AgendaContext dbContext = new AgendaContext())
-                {
-                    var rContactos = dbContext.Contacto.Where(x => (bool)x.Activo && x.Id == id).ToList();
-                    if (!rContactos.Any()) return new OperationResult() { Message = "El contacto con el id ingresado no existe. Verifique." };
-
-                    rContactos.First().Activo = false;
-
-                    dbContext.SaveChanges();
-
-                    return new OperationResult() { Success = true };
-                }
-            }
-            catch (Exception ex) // Normalmente se manda un error genérico, pero se deja así por fines de que es una evaluación
-            {
-                return new OperationResult() { Message = ex.Message };
-            }
-        }
-        private static List<ContactoModel> GetBy_Tel(string telefono)
-        {
-            var lContactos = new List<ContactoModel>();
-            try
-            {
-                if (string.IsNullOrEmpty(telefono)) return lContactos;
-
-                using (AgendaContext dbContext = new AgendaContext())
-                {
-                    var rContactos = dbContext.Contacto.Where(x => (bool)x.Activo && (x.Telefono.Trim() == telefono.Trim())).ToList();
-
-                    rContactos.ForEach(x => lContactos.Add(new ContactoModel()
-                    {
-                        ApellidoMaterno = x.ApellidoMaterno,
-                        ApellidoPaterno = x.ApellidoPaterno,
-                        Direccion = x.Direccion,
-                        Email = x.Email,
-                        Nombre = x.Nombre,
-                        Telefono = x.Telefono,
-                        Id = x.Id
-                    }));
-
-                    return lContactos;
-                }
-            }
-            catch
-            {
-                return lContactos;
-            }
-        }
-        private static List<ContactoModel> GetBy_Email(string email)
-        {
-            var lContactos = new List<ContactoModel>();
-            try
-            {
-                if (string.IsNullOrEmpty(email)) return lContactos;
-
-                using (AgendaContext dbContext = new AgendaContext())
-                {
-                    var rContactos = dbContext.Contacto.Where(x => (bool)x.Activo && x.Email.Trim().ToUpper() == email.Trim().ToUpper()).ToList();
-
-                    rContactos.ForEach(x => lContactos.Add(new ContactoModel()
-                    {
-                        ApellidoMaterno = x.ApellidoMaterno,
-                        ApellidoPaterno = x.ApellidoPaterno,
-                        Direccion = x.Direccion,
-                        Email = x.Email,
-                        Nombre = x.Nombre,
-                        Telefono = x.Telefono,
-                        Id = x.Id
-                    }));
-
-                    return lContactos;
-                }
-            }
-            catch
-            {
-                return lContactos;
-            }
-        }
+        /// <summary>
+        /// Actualiza un contacto > <see cref="Contacto"/>
+        /// </summary>
+        /// <param name="contacto"></param>
+        /// <returns></returns>
         public static OperationResult Update(ContactoModel contacto)
         {
             try
@@ -253,5 +145,144 @@ namespace Evaluacion.Agenda.DATA.Services
                 return new OperationResult() { Message = ex.Message }; // Normalmente se manda un error genérico, pero se deja así por fines de que es una evaluación
             }
         }
+
+        /// <summary>
+        /// Devuelve una lista de contactos > <see cref="Contacto"/>
+        /// </summary>
+        /// <param name="numRegistros"></param>
+        /// <param name="numPagina"></param>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        public static ResponseContactoModel Get(int numRegistros, int numPagina, string filter)
+        {
+            var rContactos_ = new ResponseContactoModel();
+
+            try
+            {
+                using (AgendaContext dbContext = new AgendaContext())
+                {
+                    if (string.IsNullOrEmpty(filter)) filter = "";
+
+                    var rContactos = dbContext.Contacto.Where(x => (bool)x.Activo &&
+                    (((x.Nombre ?? "") + " " + (x.ApellidoPaterno ?? "") + " " + (x.ApellidoMaterno ?? "")).Contains(filter) ||
+                    x.Email.Contains(filter) ||
+                    x.Telefono.Contains(filter) ||
+                    x.Direccion.Contains(filter)))
+                        .OrderByDescending(x => x.FechaCreacion).ToList();
+
+                    rContactos_.TotalGlobal = rContactos.Count();
+
+                    rContactos = rContactos.Skip((numPagina - 1) * numRegistros)
+                   .Take(numRegistros).ToList();
+
+                    rContactos.ForEach(x => rContactos_.ListContactos.Add(new ContactoModel()
+                    {
+                        ApellidoMaterno = x.ApellidoMaterno,
+                        ApellidoPaterno = x.ApellidoPaterno,
+                        Direccion = x.Direccion,
+                        Email = x.Email,
+                        Nombre = x.Nombre,
+                        Telefono = x.Telefono,
+                        Id = x.Id
+                    }));
+
+                    return rContactos_;
+                }
+            }
+            catch
+            {
+                return rContactos_; // Normalmente se manda un error genérico, pero se deja así por fines de que es una evaluación
+            }
+        }
+
+        /// <summary>
+        /// Elimina un contacto > <see cref="Contacto"/>
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static OperationResult Delete(Guid id)
+        {
+            try
+            {
+                using (AgendaContext dbContext = new AgendaContext())
+                {
+                    var rContactos = dbContext.Contacto.Where(x => (bool)x.Activo && x.Id == id).ToList();
+                    if (!rContactos.Any()) return new OperationResult() { Message = "El contacto con el id ingresado no existe. Verifique." };
+
+                    rContactos.First().Activo = false;
+
+                    dbContext.SaveChanges();
+
+                    return new OperationResult() { Success = true };
+                }
+            }
+            catch (Exception ex) // Normalmente se manda un error genérico, pero se deja así por fines de que es una evaluación
+            {
+                return new OperationResult() { Message = ex.Message };
+            }
+        }
+
+        #region Private Methods
+        private static List<ContactoModel> GetBy_Tel(string telefono)
+        {
+            var lContactos = new List<ContactoModel>();
+            try
+            {
+                if (string.IsNullOrEmpty(telefono)) return lContactos;
+
+                using (AgendaContext dbContext = new AgendaContext())
+                {
+                    var rContactos = dbContext.Contacto.Where(x => (bool)x.Activo && (x.Telefono.Trim() == telefono.Trim())).ToList();
+
+                    rContactos.ForEach(x => lContactos.Add(new ContactoModel()
+                    {
+                        ApellidoMaterno = x.ApellidoMaterno,
+                        ApellidoPaterno = x.ApellidoPaterno,
+                        Direccion = x.Direccion,
+                        Email = x.Email,
+                        Nombre = x.Nombre,
+                        Telefono = x.Telefono,
+                        Id = x.Id
+                    }));
+
+                    return lContactos;
+                }
+            }
+            catch
+            {
+                return lContactos;
+            }
+        }
+        private static List<ContactoModel> GetBy_Email(string email)
+        {
+            var lContactos = new List<ContactoModel>();
+            try
+            {
+                if (string.IsNullOrEmpty(email)) return lContactos;
+
+                using (AgendaContext dbContext = new AgendaContext())
+                {
+                    var rContactos = dbContext.Contacto.Where(x => (bool)x.Activo && x.Email.Trim().ToUpper() == email.Trim().ToUpper()).ToList();
+
+                    rContactos.ForEach(x => lContactos.Add(new ContactoModel()
+                    {
+                        ApellidoMaterno = x.ApellidoMaterno,
+                        ApellidoPaterno = x.ApellidoPaterno,
+                        Direccion = x.Direccion,
+                        Email = x.Email,
+                        Nombre = x.Nombre,
+                        Telefono = x.Telefono,
+                        Id = x.Id
+                    }));
+
+                    return lContactos;
+                }
+            }
+            catch
+            {
+                return lContactos;
+            }
+        }
+        #endregion
     }
 }
