@@ -12,7 +12,7 @@ export class ContactosService {
   get(numRegistros:number, numPagina:number){
     let params = new HttpParams();
     params = params.append('numRegistros', numRegistros.toString() );
-    params = params.append('pagina', numPagina.toString() );
+    params = params.append('numPagina', numPagina.toString() );
 
     return this.http.get<ResponseContactoModel>(`${environment.apiUrl}/Contacto`, { params });
   }

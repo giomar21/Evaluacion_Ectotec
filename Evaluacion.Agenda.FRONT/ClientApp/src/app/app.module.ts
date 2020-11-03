@@ -10,6 +10,7 @@ import { ListaContactosComponent } from './lista-contactos/lista-contactos.compo
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {ConfirmDialogService} from './services/confirm-dialog.service'; 
+import { JwPaginationModule } from 'jw-angular-pagination';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {ConfirmDialogService} from './services/confirm-dialog.service';
     HttpClientModule,
     FormsModule,
     NgbModalModule,
+    JwPaginationModule,
     RouterModule.forRoot([
       { path: '', component: ListaContactosComponent, pathMatch: 'full' },
       { path: 'lista-contactos', component: ListaContactosComponent },

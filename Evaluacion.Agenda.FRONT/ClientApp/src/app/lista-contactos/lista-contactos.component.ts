@@ -15,9 +15,11 @@ export class ListaContactosComponent implements OnInit {
   public listContactos: Contacto[];
   public totalContactos: number;
   public pageIndex:number = 0;
-  public pageSize:number = 5;
+  public pageSize:number = 10;
   public msj:string;
   public result: OperationResult;
+  public pageOfItems: Array<any>;
+  items = [];
 
   contacto:Contacto;
   constructor(http: HttpClient, private contactService:ContactosService, private modal:NgbModal, private confirmDialogService: ConfirmDialogService) {
@@ -26,8 +28,32 @@ export class ListaContactosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getContacts(this.pageSize, this.pageIndex + 1);
+    this.getContacts(this.pageSize, this.pageIndex + 1);  
   }
+
+  loadNPages(){
+    this.items = Array( this.totalContactos ).fill(0).map((x, i) => ({ id: (i + 1), name: `i${i + 1}`, nPage : Math.ceil((i+1)/this.pageSize)}));
+  }  
+
+  onChangePage(pageOfItems: Array<any>) {
+    this.pageOfItems = pageOfItems;
+    if (this.pageOfItems.length == 0) {
+      this.pageIndex = 0
+    }else{
+      this.pageIndex = this.pageOfItems[0].nPage;
+    }
+
+    this.contactService.get(this.pageSize, this.pageIndex)
+    .pipe(first())
+    .subscribe(
+      data => {
+        this.listContactos = data.listContactos;
+        this.totalContactos = data.totalGlobal;
+      },
+      error => {
+        console.error("Error > ", error);
+      });
+}
 
   resetContact(){
     this.contacto = {
@@ -58,8 +84,7 @@ export class ListaContactosComponent implements OnInit {
       data => {
         this.listContactos = data.listContactos;
         this.totalContactos = data.totalGlobal;
-        console.log("this.listContactos > ", this.listContactos);
-        console.log("this.totalContactos > ", this.totalContactos);
+        this.loadNPages();
       },
       error => {
         console.error("Error > ", error);
@@ -143,7 +168,6 @@ export class ListaContactosComponent implements OnInit {
 
   Eliminar(contacto:Contacto) {  
     this.confirmDialogService.confirmThis("¿Está seguro que desea eliminar el contacto seleccionado?",  () => {    
-        console.log("Delete > ", contacto);
         this.Delete(contacto);
     }, () => {  
     })  

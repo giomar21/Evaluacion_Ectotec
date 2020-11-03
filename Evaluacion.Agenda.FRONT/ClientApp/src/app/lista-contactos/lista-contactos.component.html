@@ -35,6 +35,12 @@
 </table>
 </div>
 
+<div class="card text-center m-1">
+  <div class="card-footer pb-0 pt-3">
+      <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+  </div>
+</div>
+
 <ng-template #contactoModal let-modal>
   <div class="modal-header">
     <h4 class='modal-title'>{{contacto.operacion}} un contacto</h4>
