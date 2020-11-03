@@ -15,10 +15,13 @@ export class ListaContactosComponent implements OnInit {
   public totalContactos: number;
   public pageIndex:number = 0;
   public pageSize:number = 5;
+  public msj:string;
+  public result: OperationResult;
 
   contacto:Contacto;
   constructor(http: HttpClient, private contactService:ContactosService, private modal:NgbModal) {
     this.resetContact();
+    this.resetResult();
   }
 
   ngOnInit() {
@@ -40,6 +43,13 @@ export class ListaContactosComponent implements OnInit {
     };
   }
 
+  resetResult(){
+    this.result = {
+      success: false,
+      message: ''
+    }
+  }
+
   getContacts(nRegistros:number, nPagina:number) {
     this.contactService.get(nRegistros, nPagina)
     .pipe(first())
@@ -55,17 +65,21 @@ export class ListaContactosComponent implements OnInit {
       });
   }
 
-  ProcesarContacto(){
-    console.log("this.contacto.operacion > ", this.contacto.operacion);
-
+  ProcesarContacto() {
     if (this.contacto.operacion == 'Crear')
     {
       this.contactService.post(this.contacto)
       .pipe(first())
       .subscribe(
         data => {
-          this.resetContact();
-          this.getContacts(this.pageSize, this.pageIndex + 1);
+          this.result = data;
+          if (data.success)
+          {
+            this.resetResult();
+            this.resetContact();
+            this.getContacts(this.pageSize, this.pageIndex + 1);
+            this.modal.dismissAll();
+          }    
         },
         error => {
           console.error("Error > ", error);
@@ -78,7 +92,14 @@ export class ListaContactosComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.getContacts(this.pageSize, this.pageIndex + 1);
+          this.result = data;
+          if (data.success)
+          {
+            this.resetResult();
+            this.resetContact();
+            this.getContacts(this.pageSize, this.pageIndex + 1);
+            this.modal.dismissAll();
+          }     
         },
         error => {
           console.error("Error > ", error);
@@ -87,10 +108,18 @@ export class ListaContactosComponent implements OnInit {
     }  
   }
 
-  Editar(contacto:Contacto, contactoModal){
+  Editar(contacto:Contacto, contactoModal) {
     this.contacto = contacto;
     this.contacto.operacion = 'Editar';
     this.modal.open(contactoModal);
+    this.resetResult();
+  }
+
+  Crear(contactoModal) {
+    this.contacto.operacion = 'Crear';
+    this.modal.open(contactoModal);
+    this.resetResult();
+    this.resetContact();
   }
 
 }

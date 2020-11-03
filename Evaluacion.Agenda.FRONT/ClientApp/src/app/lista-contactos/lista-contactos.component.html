@@ -1,6 +1,6 @@
 <h1 id="tableLabel2">Lista de contactos</h1>
 <br>
-<button type="button" class="btn btn-primary" (click)='modal.open(contactoModal)'>Agregar un contacto +</button>
+<button type="button" class="btn btn-primary" (click)='Crear(contactoModal)'>Agregar un contacto +</button>
 <br>
 <br>
 
@@ -69,9 +69,10 @@
         <input type="email" class="form-control" id="email" [(ngModel)]="contacto.email"  [ngModelOptions]="{standalone: true}">
       </div>  
     </form>
+    <h6 class='text-danger' >{{ result.message }}</h6>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger">Cancelar</button>
-    <button type="button" class="btn btn-primary" (click)='ProcesarContacto()'>{{contacto.operacion}} </button>
+  <div class="modal-footer">   
+    <button type="button" class="btn btn-danger" (click)='modal.dismiss()'>Cancelar</button>
+    <button type="button" class="btn btn-primary" (click)='ProcesarContacto()'>{{contacto.operacion}} </button> 
   </div>
 </ng-template>

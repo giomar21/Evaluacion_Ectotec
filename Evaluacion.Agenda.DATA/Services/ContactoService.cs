@@ -145,7 +145,8 @@ namespace Evaluacion.Agenda.DATA.Services
                         Direccion = x.Direccion,
                         Email = x.Email,
                         Nombre = x.Nombre,
-                        Telefono = x.Telefono
+                        Telefono = x.Telefono,
+                        Id = x.Id
                     }));
 
                     return lContactos;
@@ -174,7 +175,8 @@ namespace Evaluacion.Agenda.DATA.Services
                         Direccion = x.Direccion,
                         Email = x.Email,
                         Nombre = x.Nombre,
-                        Telefono = x.Telefono
+                        Telefono = x.Telefono,
+                        Id = x.Id
                     }));
 
                     return lContactos;
@@ -211,7 +213,7 @@ namespace Evaluacion.Agenda.DATA.Services
 
                 if (contactosTel.Any())
                 {
-                    if (!contactosTel.Where(x => x.Id == contacto.Id).ToList().Any())
+                    if (contactosTel.Where(x => x.Id != contacto.Id).ToList().Any())
                     {
                         return new OperationResult() { Message = "El número de teléfono ya ha sido registrado anteriormente." };
                     }
@@ -219,7 +221,7 @@ namespace Evaluacion.Agenda.DATA.Services
 
                 if (contactosEmail.Any())
                 {
-                    if (!contactosEmail.Where(x => x.Id == contacto.Id).ToList().Any())
+                    if (contactosEmail.Where(x => x.Id != contacto.Id).ToList().Any())
                     {
                         return new OperationResult() { Message = "El correo electrónico ya ha sido registrado anteriormente." };
                     }
@@ -229,20 +231,17 @@ namespace Evaluacion.Agenda.DATA.Services
 
                 using (AgendaContext dbContext = new AgendaContext())
                 {
-                    dbContext.Contacto.Add(new Contacto()
-                    {
+                    var contactoActualizar = dbContext.Contacto.Where(x => x.Id == contacto.Id).ToList().FirstOrDefault();
+                    if (contactoActualizar == null) return new OperationResult() { Message = "El contacto a actualizar no fue encontrado. Verifique." };
 
-                        Activo = true,
-                        ApellidoMaterno = contacto.ApellidoMaterno,
-                        ApellidoPaterno = contacto.ApellidoPaterno,
-                        Direccion = contacto.Direccion,
-                        Email = contacto.Email,
-                        FechaCreacion = DateTime.Now,
-                        Id = Guid.NewGuid(),
-                        Nombre = contacto.Nombre,
-                        Telefono = contacto.Telefono
-
-                    });
+                    contactoActualizar.Activo = true;
+                    contactoActualizar.ApellidoMaterno = contacto.ApellidoMaterno;
+                    contactoActualizar.ApellidoPaterno = contacto.ApellidoPaterno;
+                    contactoActualizar.Direccion = contacto.Direccion;
+                    contactoActualizar.Email = contacto.Email;
+                    contactoActualizar.Id = contacto.Id;
+                    contactoActualizar.Nombre = contacto.Nombre;
+                    contactoActualizar.Telefono = contacto.Telefono;
 
                     dbContext.SaveChanges();
 

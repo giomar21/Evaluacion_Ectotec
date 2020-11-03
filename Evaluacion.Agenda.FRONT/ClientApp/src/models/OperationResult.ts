@@ -1,4 +1,4 @@
 interface OperationResult{
-    Success: boolean;
-    Message: string;
+    success: boolean;
+    message: string;
 }
